@@ -1,0 +1,17 @@
+name: Infra Deployment
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    paths:
+      - modules/**
+      - repositories/**
+jobs:
+
+  Deploy_Baseline:
+    uses: ./.github/workflows/Terraform.yml
+    with:
+        workingDirectory: './repositories/azure/azure-subscription-baseline'
+        evironmetTerraform: './environment/dev'
+    secrets: inherit
