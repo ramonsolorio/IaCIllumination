@@ -6,3 +6,7 @@ tags        = {
   owner       = "rvr"
   destination = "azure"
 }
+
+storage_account_name = "stgaccdemostvr"
+account_tier = "Standard"
+account_replication_type = "LRS"
