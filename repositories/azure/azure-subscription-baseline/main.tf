@@ -12,7 +12,7 @@ module "azure-resource-group" {
 module "storage-account" {
     source = "../../../modules/azure/storage-account"
     storage_account_name = var.storage_account_name
-    resource_group_name = module.azure-resource-group.resource_group_name
+    resource_group_name = var.group_name
     location = var.location
     account_tier = var.account_tier
     account_replication_type = var.account_replication_type
