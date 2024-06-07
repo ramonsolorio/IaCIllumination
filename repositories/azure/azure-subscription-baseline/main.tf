@@ -8,14 +8,15 @@ module "azure-resource-group" {
     tags = var.tags
 }
 
-# Create storage account
+#Create storage account from list
 module "storage-account" {
     source = "../../../modules/azure/storage-account"
-    storage_account_name = var.storage_account_name
+    for_each = { for idx, storage_account in var.storage_account : idx => storage_account }
+    storage_account_name = each.value.storage_account_name
     resource_group_name = var.group_name
     location = var.location
-    account_tier = var.account_tier
-    account_replication_type = var.account_replication_type
+    account_tier = each.value.account_tier
+    account_replication_type = each.value.account_replication_type
     tags = var.tags
     depends_on = [ module.azure-resource-group ]
 }
